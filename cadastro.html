@@ -13,7 +13,7 @@
     <title>Cadastro</title>
 </head>
 
-<body>
+<body style="background-color: #f4f6fe;">
     <!--FAZENDO A NAVBAR-->
     <nav class="navbar navbar-expand-lg" style="background-color: #6103ade1;">
         <div class="container-fluid">
@@ -39,8 +39,8 @@
     </nav>
 
     <!--FAZENDO O FORMULARIO-->
-    <form class="row g-3" style="padding-left: 40%;">
-        <div class="col-md-4">
+    <form class="row g-3" style=" padding-left: 40%;">
+        <div class="col-md-4" style="margin-top: 50px; ">
           <label for="validationServer01" class="form-label">Nome Completo</label>
           <input type="text" class="form-control" id="validationServer01" placeholder="Digite seu nome completo!!" required>
          <!-- <div class="valid-feedback">
@@ -48,16 +48,48 @@
           </div>-->
         <div class="col-md-12">
           <label for="validationServer02" class="form-label">CPF</label>
-          <input type="text" class="form-control" id="validationServer02" placeholder="999.999.999-99" aria-describedby="validationServer02Feedback" required>
+          <input type="text" class="form-control" id="validationCustom01" maxlength="11" placeholder="999.999.999-99" required
+          onblur="mascaraCPF(this)"
+          oninput="retiraLetras(this)"
+          onfocus="retiraLetras(this)" >
           <!--<div id="validationServer03Feedback" class="invalid-feedback">
             Insira um cpf valido
           </div>-->  
           </div>
         </div>
-        <div class="col-12">
-          <button id="enviar" class="btn btn-primary"  style="background-color: #6103ade1  ;" type="submit">Enviar</button>
+        <div class="col-12" style="padding-left:90px ;">
+          <button id="enviar" class="btn btn-primary"  style="background-color: #6103ade1; border-color: blueviolet" type="submit">Enviar</button>
         </div>
+
       </form>
+
+      <script>
+        function retiraLetras(text){
+            const testoAtual = text.value;
+    
+            const textoAjustado = textoAtual.replace(/[^\d]+/g, "")
+    
+            text.value = textoAjustado;
+    
+        }
+        function mascaraCPF(cpf){
+    
+            const textoAtual = cpf.value;
+    
+            let textoAjustado;
+    
+            const parte1 = textoAtual.slice(0,3);
+            const parte2 = textoAtual.slice(3,6);
+            const parte3 = textoAtual.slice(6,9);
+            const parte4 = textoAtual.slice(9,11);
+            textoAjustado = `${parte1}.${parte2}.${parte3}-${parte4}`
+    
+            if (cpf.value != "")
+            cpf.value = textoAjustado
+    
+        }
+    </script>
+
 </body>
 
 </html>

@@ -1,6 +1,22 @@
 function verificarCPF(c){
     var i;
     s = c;
+
+    if (
+        c == "00000000000" ||
+        c == "11111111111" ||
+        c == "22222222222" ||
+        c == "33333333333" ||
+        c == "44444444444" ||
+        c == "55555555555" ||
+        c == "66666666666" ||
+        c == "77777777777" ||
+        c == "88888888888" ||
+        c == "99999999999" ){
+        alert("CPF Inválido")
+        return false;
+        }
+
     var c = s.substr(0,9);
     var dv = s.substr(9,2);
     var d1 = 0;
@@ -34,6 +50,6 @@ function verificarCPF(c){
         return false;
     }
     if (!v) {
-        alert(c + "nCPF Válido")
+        alert(c + "CPF Válido")
     }
 }
