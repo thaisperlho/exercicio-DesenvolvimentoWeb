@@ -35,59 +35,68 @@
 
     <table class="table">
         
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CPF</th>
-          </tr>
-        </thead>
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">CPF</th>
+        </tr>
+      </thead>
+      
+      <tbody class="table-group-divider">
+        <tr>
+          <td id="n1"></td>
+          <td id="c1"></td>
+        </tr>
         
-        <tbody class="table-group-divider">
-          <tr>
-            <th scope="row">1</th>
-            <td>Kedsson dos Santos Figueredo</td>
-            <td>999.999.999-99</td>
-          </tr>
-          
-          <tr>
-            <th scope="row">2</th>
-            <td>Vinicius Dos Santos Caló</td>
-            <td>999.999.999-99</td>
-          </tr>
-
-          <tr>
-            <th scope="row">3</th>
-            <td>José Nascimento da Silva</td>
-            <td>999.999.999-99</td>
-          </tr>
-        
-        </tbody>
-      </table>
-      <div>
-        <input class="button" type=submit value="Lista Cliente" onclick="getLocal()"/></br></br>
-        <p id="resposta"></p>
+        <tr>
+          <td id="n2"></td>
+          <td id="c2"></td>
+        </tr>
+  
+        <tr>
+          <td id="n3"></td>
+          <td id="c3"></td>
+        </tr>
+  
+        <tr>
+          <td id="n4"></td>
+          <td id="c4"></td>
+        </tr>
+  
+        <tr>
+          <td id="n5"></td>
+          <td id="c5"></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <div>
+      <input class="btn btn-primary" style="background-color:#6103ade1;" type=submit value="Lista Cliente" onclick="listarClientes()"/>
     </div>
       <script>
         function getLocal(){
             const data = localStorage.getItem("data");
-
-            let p = document.getElementById("resposta");
-
             if (data == null){
                 return [];
             }
-
-            const listaCliente =  JSON.parse(data);
-
-            // Dessa maneira eu pego uma posicao -> JSON.stringify(listaCliente[0]
-            
-
-            // Dessa maneira vc acessa o dict na posisao 0 -> listaCliente[0].cpf
-
-
-            p.textContent = `${listaCliente[0].name}`
+            return JSON.parse(data);
         }
+
+      function listarClientes(){
+      const listaCliente =  getLocal()
+
+      n1.textContent = `${listaCliente[0].name}`
+      c1.textContent = ` ${listaCliente[0].cpf}`
+      n2.textContent = `${listaCliente[1].name}`
+      c2.textContent = ` ${listaCliente[1].cpf}`
+      n3.textContent = `${listaCliente[2].name}`
+      c3.textContent = ` ${listaCliente[2].cpf}`
+      n4.textContent = `${listaCliente[3].name}`
+      c4.textContent = ` ${listaCliente[3].cpf}`
+      n5.textContent = `${listaCliente[4].name}`
+      c5.textContent = ` ${listaCliente[4].cpf}`
+
+  }
       </script>
 </body>
 </html>
