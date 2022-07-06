@@ -45,7 +45,10 @@
       <p class="card-text">Digite o CPF do cliente que deseja excluir</p>
       <form class="row g-3 needs-validation" novalidate>
         <div class="col-md-4">
-          <input type="text" class="form-control" id="validationCustom01" placeholder="999.999.999-99" required>
+          <input type="text" class="form-control" id="validationCustom01" placeholder="999.999.999-99" required
+          onblur="mascaraCPF(this)"
+          oninput="retiraLetras(this)"
+          onfocus="retiraLetras(this)" >
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -56,7 +59,32 @@
       </form>
     </div>
   </div>
+  <script>
+    function retiraLetras(text){
+        const testoAtual = text.value;
 
+        const textoAjustado = textoAtual.replace(/[^\d]+/g, "")
+
+        text.value = textoAjustado;
+
+    }
+    function mascaraCPF(cpf){
+
+        const textoAtual = cpf.value;
+
+        let textoAjustado;
+
+        const parte1 = textoAtual.slice(0,3);
+        const parte2 = textoAtual.slice(3,6);
+        const parte3 = textoAtual.slice(6,9);
+        const parte4 = textoAtual.slice(9,11);
+        textoAjustado = `${parte1}.${parte2}.${parte3}-${parte4}`
+
+        if (cpf.value != "")
+        cpf.value = textoAjustado
+
+    }
+</script>
 
 </body>
 
