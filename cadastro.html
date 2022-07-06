@@ -52,7 +52,7 @@
           <input type="text" class="form-control" id="cpf" maxlength="11" placeholder="999.999.999-99" required
           onblur="mascaraCPF(this)"
           oninput="retiraLetras(this)"
-          onfocus="retiraLetras(this)" >
+          onfocus="retiraLetras(this)">
           <!--<div id="validationServer03Feedback" class="invalid-feedback">
             Insira um cpf valido
           </div>-->  
@@ -99,6 +99,7 @@
             const textoAjustado = textoAtual.replace(/[^\d]+/g, "")
     
             text.value = textoAjustado;
+
     
         }
         function mascaraCPF(cpf){
@@ -115,6 +116,9 @@
     
             if (cpf.value != "")
             cpf.value = textoAjustado
+
+            verificarCPF(cpf.value)
+
     
         }
     </script>
