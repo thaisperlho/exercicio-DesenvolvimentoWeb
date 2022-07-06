@@ -56,24 +56,29 @@
       </tr>
       
       <tr>
-        <td></td>
-        <td></td>
+        <td id="n2"></td>
+        <td id="c2"></td>
       </tr>
 
       <tr>
-        <td></td>
-        <td></td>
+        <td id="n3"></td>
+        <td id="c3"></td>
       </tr>
 
       <tr>
-        <td></td>
-        <td></td>
+        <td id="n4"></td>
+        <td id="c4"></td>
+      </tr>
+
+      <tr>
+        <td id="n5"></td>
+        <td id="c5"></td>
       </tr>
     
     </tbody>
   </table>
   <div>
-    <input class="btn btn-primary" style="background-color:#6103ade1;" type=submit value="Lista Cliente" onclick="getLocal()"/></br></br>
+    <input class="btn btn-primary" style="background-color:#6103ade1;" type=submit value="Lista Cliente" onclick="listarClientes()"/></br></br>
     <p id="resposta"></p>
   </div>
 
@@ -81,7 +86,7 @@
     <div class="card-body">
       <h5 class="card-title" style="padding-top: 20px;">Excluir cliente</h5>
       <p class="card-text">Digite o CPF do cliente que deseja excluir</p>
-      <form class="row g-3 needs-validation" novalidate>
+      <form class="row g-3 needs-validation" novalidate onsubmit="removeCliente()">
         <div class="col-md-4">
           <input id="cpf" type=text required name=cpf placeholder="000.000.000-00"
                 onblur="mascaraCPF(this)"
@@ -124,31 +129,53 @@
         cpf.value = textoAjustado
 
     }
-function getLocal(){
+    function getLocal(){
             const data = localStorage.getItem("data");
-
-            let n1 = document.getElementById("n1");
-            let c1 = document.getElementById("c1");
-
             if (data == null){
                 return [];
             }
-
-            const listaCliente =  JSON.parse(data);
-
-            // Dessa maneira eu pego uma posicao -> JSON.stringify(listaCliente[0]
-            
-
-            // Dessa maneira vc acessa o dict na posisao 0 -> listaCliente[0].cpf
-
-            n1.textContent = `${listaCliente[0].name}`
-            c1.textContent = ` ${listaCliente[0].cpf}`
-
+            return JSON.parse(data);
         }
 
-        function excluirCliente(){
+    function setLocal(name, cpf){
+      const values = {name: name, cpf: cpf};
+      const data = getLocal();
 
-        }
+      data.push(values);
+
+      const newData = JSON.stringify(data);
+      localStorage.setItem("data", newData);
+    }
+    function removeCliente(v){
+      let c = document.getElementById("cpf");
+
+      const cpf = c.value;
+
+      const listaCliente = getLocal()
+
+      const data = listaCliente.filter((v) => v.cpf != cpf);
+      
+      const newData = JSON.stringify(data);
+
+      localStorage.setItem("data", newData);
+      
+      listarClientes();
+    }
+    function listarClientes(){
+      const listaCliente =  getLocal()
+
+      n1.textContent = `${listaCliente[0].name}`
+      c1.textContent = ` ${listaCliente[0].cpf}`
+      n2.textContent = `${listaCliente[1].name}`
+      c2.textContent = ` ${listaCliente[1].cpf}`
+      n3.textContent = `${listaCliente[2].name}`
+      c3.textContent = ` ${listaCliente[2].cpf}`
+      n4.textContent = `${listaCliente[3].name}`
+      c4.textContent = ` ${listaCliente[3].cpf}`
+      n5.textContent = `${listaCliente[4].name}`
+      c5.textContent = ` ${listaCliente[4].cpf}`
+
+  }
 
 
   </script>
