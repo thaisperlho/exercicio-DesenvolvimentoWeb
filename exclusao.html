@@ -46,7 +46,10 @@
       <p class="card-text">Digite o CPF do cliente que deseja excluir</p>
       <form class="row g-3 needs-validation" novalidate>
         <div class="col-md-4">
-          <input type="text" name="cpf" maxlength="11" onblur="return verificarCPF(this.value)"/>
+          <input id="cpf" type=text required name=cpf placeholder="000.000.000-00"
+                onblur="mascaraCPF(this)"
+                oninput="retiraLetras(this)"
+                onfocus="retiraLetras(this)"/>
         </div>
         <div class="col-12">
           <button class="btn btn-primary" style="background-color:#6103ade1;" type="submit">
@@ -56,6 +59,9 @@
           </svg> Excluir </button>
         </div>
       </form>
+      <form name="form1">
+        CPF: <input type="text" name="cpf" maxlength="11" onblur="return verificarCPF(this.value)"/>
+    </form>
     </div>
   </div>
   <script>
