@@ -64,5 +64,30 @@
         
         </tbody>
       </table>
+      <div>
+        <input class="button" type=submit value="Lista Cliente" onclick="getLocal()"/></br></br>
+        <p id="resposta"></p>
+    </div>
+      <script>
+        function getLocal(){
+            const data = localStorage.getItem("data");
+
+            let p = document.getElementById("resposta");
+
+            if (data == null){
+                return [];
+            }
+
+            const listaCliente =  JSON.parse(data);
+
+            // Dessa maneira eu pego uma posicao -> JSON.stringify(listaCliente[0]
+            
+
+            // Dessa maneira vc acessa o dict na posisao 0 -> listaCliente[0].cpf
+
+
+            p.textContent = `${listaCliente[0].name}`
+        }
+      </script>
 </body>
 </html>
