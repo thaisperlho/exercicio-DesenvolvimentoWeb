@@ -40,6 +40,43 @@
     </div>
   </nav>
 
+  <table class="table">
+        
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">CPF</th>
+      </tr>
+    </thead>
+    
+    <tbody class="table-group-divider">
+      <tr>
+        <td id="n1"></td>
+        <td id="c1"></td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+    
+    </tbody>
+  </table>
+  <div>
+    <input class="btn btn-primary" style="background-color:#6103ade1;" type=submit value="Lista Cliente" onclick="getLocal()"/></br></br>
+    <p id="resposta"></p>
+  </div>
+
   <div class="row g-3" style="padding-left: 40%;">
     <div class="card-body">
       <h5 class="card-title" style="padding-top: 20px;">Excluir cliente</h5>
@@ -59,9 +96,6 @@
           </svg> Excluir </button>
         </div>
       </form>
-      <form name="form1">
-        CPF: <input type="text" name="cpf" maxlength="11" onblur="return verificarCPF(this.value)"/>
-    </form>
     </div>
   </div>
   <script>
@@ -90,8 +124,37 @@
         cpf.value = textoAjustado
 
     }
+function getLocal(){
+            const data = localStorage.getItem("data");
 
-</script>
+            let n1 = document.getElementById("n1");
+            let c1 = document.getElementById("c1");
+
+
+
+            if (data == null){
+                return [];
+            }
+
+            const listaCliente =  JSON.parse(data);
+
+            // Dessa maneira eu pego uma posicao -> JSON.stringify(listaCliente[0]
+            
+
+            // Dessa maneira vc acessa o dict na posisao 0 -> listaCliente[0].cpf
+
+
+            n1.textContent = `${listaCliente[0].name}`
+            c1.textContent = ` ${listaCliente[0].cpf}`
+
+        }
+
+        function excluirCliente(){
+
+        }
+
+
+  </script>
 
 </body>
 
