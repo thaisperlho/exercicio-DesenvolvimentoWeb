@@ -103,7 +103,8 @@
     
         }
         function mascaraCPF(cpf){
-    
+            verificarCPF(cpf.value)
+            
             const textoAtual = cpf.value;
     
             let textoAjustado;
@@ -117,7 +118,6 @@
             if (cpf.value != "")
             cpf.value = textoAjustado
 
-            verificarCPF(cpf.value)
 
     
         }
