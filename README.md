@@ -3,6 +3,7 @@
 
 ---
 ## Em grupo, desenvolva um site que atenda os requisitos abaixo:
+
 1. Tela principal, com as opções: Cadastrar cliente, Listar cliente e Excluir cliente;
 2. Tela para cadastro de cliente, com os campos:
     - CPF. Este campo só deve aceitar números, deve possuir a máscara: 999.999.999-99 e só pode aceitar CPFs válidos. Caso seja inserido um CPF inválido, o sistema deve apresentar uma mensagem.
