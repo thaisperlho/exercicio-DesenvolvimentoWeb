@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+    <script type="text/javascript" src="funcoes_cpf.js"></script>
     <title>Cadastro</title>
 </head>
 
@@ -39,16 +40,16 @@
     </nav>
 
     <!--FAZENDO O FORMULARIO-->
-    <form class="row g-3" style=" padding-left: 40%;">
+    <form class="row g-3" style=" padding-left: 40%;" onsubmit="getValue()">
         <div class="col-md-4" style="margin-top: 50px; ">
-          <label for="validationServer01" class="form-label">Nome Completo</label>
-          <input type="text" class="form-control" id="validationServer01" placeholder="Digite seu nome completo!!" required>
+          <label for="nome" class="form-label">Nome Completo</label>
+          <input type="text" class="form-control" id="nome" placeholder="Digite seu nome completo!!" required>
          <!-- <div class="valid-feedback">
             Perfeito :)
           </div>-->
         <div class="col-md-12">
-          <label for="validationServer02" class="form-label">CPF</label>
-          <input type="text" class="form-control" id="validationCustom01" maxlength="11" placeholder="999.999.999-99" required
+          <label for="cpf" class="form-label">CPF</label>
+          <input type="text" class="form-control" id="cpf" maxlength="11" placeholder="999.999.999-99" required
           onblur="mascaraCPF(this)"
           oninput="retiraLetras(this)"
           onfocus="retiraLetras(this)" >
@@ -64,6 +65,34 @@
       </form>
 
       <script>
+        function getLocal(){
+            const data = localStorage.getItem("data");
+            if (data == null){
+                return [];
+            }
+            return JSON.parse(data);
+        }
+
+        function setLocal(name, cpf){
+            const values = {name: name, cpf: cpf};
+            const data = getLocal();
+
+            data.push(values);
+
+            const newData = JSON.stringify(data);
+            localStorage.setItem("data", newData);
+        }
+
+        function getValue(){
+            let n = document.getElementById("nome");
+            let c = document.getElementById("cpf");
+
+            const name = n.value
+            const cpf = c.value
+
+            setLocal(name, cpf)
+
+        }
         function retiraLetras(text){
             const testoAtual = text.value;
     
